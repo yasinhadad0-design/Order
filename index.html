@@ -73,8 +73,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .feature-box .icon { font-size: 22px; display: block; margin-bottom: 5px; }
-        
-        /* وصف المنتج */
         .product-desc {
             padding: 15px;
             background: white;
@@ -159,7 +157,9 @@
         .result-ok { background: #d4edda; color: #155724; }
         .result-fail { background: #fff3cd; color: #856404; }
         .result-img {
-            width: 100%;
+            display: block;
+            margin: 0 auto;
+            max-width: 90%;
             border-radius: 8px;
             margin-bottom: 10px;
         }
@@ -296,16 +296,13 @@
 </head>
 <body>
     <div class="container">
-        <!-- الهيدر -->
         <div class="header">
             <div class="brand">Fast<span>Test</span></div>
-            <div class="subtitle">جهاز + سائل فحص تسرب جوان كيلاس - صنع في الجزائر 🇩🇿</div>
+            <div class="subtitle">جهاز + سائل فحص احتراق جوان كيلاس - صنع في الجزائر 🇩🇿</div>
         </div>
 
-        <!-- صورة المنتج الرئيسية -->
         <img class="product-img" src="https://i.ibb.co/nNKwKjgg/IMG-1393.png" alt="FastTest Product">
 
-        <!-- المميزات السريعة -->
         <div class="features">
             <div class="feature-box">
                 <span class="icon">⏱️</span>
@@ -325,12 +322,11 @@
             </div>
         </div>
 
-        <!-- وصف المنتج -->
         <div class="product-desc">
             <div class="section-title">📋 وصف المنتج</div>
             <div class="desc-item">
                 <div class="desc-icon">🔧</div>
-                <div class="desc-text"><strong>FastTest</strong> - جهاز فحص متطور مع سائل خاص لكشف تسرب <strong>جوان كيلاس</strong> (Joint de Culasse / احشية الاسطوانة)</div>
+                <div class="desc-text"><strong>FastTest</strong> - جهاز فحص متطور مع سائل خاص لكشف احتراق أو تلف <strong>جوان كيلاس</strong> (Joint de Culasse / احشية الاسطوانة)</div>
             </div>
             <div class="desc-item">
                 <div class="desc-icon">⚡</div>
@@ -350,7 +346,6 @@
             </div>
         </div>
 
-        <!-- طريقة الاستخدام -->
         <div class="usage-steps">
             <h4>📖 طريقة الاستخدام</h4>
             <img class="usage-img" src="https://i.ibb.co/997tfr6q/32-F6-E20-A-2-CFA-421-E-992-B-EA52307-A5498.jpg" alt="طريقة استخدام FastTest">
@@ -372,35 +367,31 @@
             </div>
         </div>
 
-        <!-- نتائج الفحص -->
         <div class="section-title">🎨 نتائج الفحص</div>
-        <img class="result-img" src="https://i.ibb.co/KxmWsCvd/IMG-1381.png" alt="نتائج فحص FastTest" style="display:block;margin:0 auto;max-width:90%;">
+        <img class="result-img" src="https://i.ibb.co/KxmWsCvd/IMG-1381.png" alt="نتائج فحص FastTest">
         <div class="result-box">
             <div class="result-item result-ok">
                 🔵 اللون أزرق<br>
-                <strong>لا يوجد تسرب ✅</strong><br>
+                <strong>لا يوجد احتراق ✅</strong><br>
                 <small>جوان كيلاس سليم</small>
             </div>
             <div class="result-item result-fail">
                 🟡 اللون أصفر<br>
-                <strong>يوجد تسرب ⚠️</strong><br>
+                <strong>يوجد احتراق/تلف ⚠️</strong><br>
                 <small>يحتاج تغيير جوان كيلاس</small>
             </div>
         </div>
 
-        <!-- البطاقة التعريفية -->
         <div class="brand-card">
             <img src="https://i.ibb.co/PsSbJttL/IMG-1389.png" alt="FastTest Professional Diagnostic Center">
         </div>
 
-        <!-- السعر -->
         <div class="price-section">
             <div class="price" id="unitPriceDisplay">8,900 <small>دج</small></div>
             <div class="discount-badge" id="discountBadge" style="display:none;">🔥 خصم! 8500 دج للقطعة عند طلب 2+</div>
             <div class="delivery-info">🚚 التوصيل لجميع الولايات</div>
         </div>
 
-        <!-- نموذج الطلب -->
         <div class="form-section">
             <form id="orderForm">
                 <div class="form-group">
