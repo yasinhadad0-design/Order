@@ -42,7 +42,8 @@
         }
         .product-img {
             width: 100%;
-            height: 220px;
+            height: auto;
+            max-height: 300px;
             object-fit: contain;
             background: #f8f9fa;
             padding: 10px;
@@ -117,6 +118,11 @@
             margin-bottom: 12px;
             font-size: 15px;
         }
+        .usage-img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
         .step {
             display: flex;
             align-items: flex-start;
@@ -152,16 +158,20 @@
         }
         .result-ok { background: #d4edda; color: #155724; }
         .result-fail { background: #fff3cd; color: #856404; }
-        .result-dot {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            margin-bottom: 3px;
+        .result-img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
-        .dot-blue { background: #0077b6; }
-        .dot-yellow { background: #ffc107; }
-
+        .brand-card {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+        .brand-card img {
+            max-width: 200px;
+            height: auto;
+        }
         .price-section {
             text-align: center;
             padding: 20px;
@@ -270,18 +280,32 @@
             color: #999;
             padding: 10px;
         }
+        .whatsapp-btn {
+            display: block;
+            text-align: center;
+            background: #25D366;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 15px;
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- الهيدر -->
         <div class="header">
             <div class="brand">Fast<span>Test</span></div>
-            <div class="subtitle">جهاز فحص تسرب غطاء المحرك - صنع في الجزائر 🇩🇿</div>
+            <div class="subtitle">جهاز + سائل فحص تسرب جوان كيلاس - صنع في الجزائر 🇩🇿</div>
         </div>
 
-        <!-- غير رابط الصورة إلى رابط مباشر لصورة منتجك -->
-        <img class="product-img" src="https://via.placeholder.com/400x220/1a3c5e/ffffff?text=FastTest+Product" alt="FastTest">
+        <!-- صورة المنتج الرئيسية -->
+        <img class="product-img" src="https://i.ibb.co/nNKwKjgg/IMG-1393.png" alt="FastTest Product">
 
+        <!-- المميزات السريعة -->
         <div class="features">
             <div class="feature-box">
                 <span class="icon">⏱️</span>
@@ -289,11 +313,11 @@
             </div>
             <div class="feature-box">
                 <span class="icon">🔁</span>
-                قابل لإعادة الاستخدام 10 مرات
+                يعاد استخدامه 10 مرات
             </div>
             <div class="feature-box">
                 <span class="icon">✅</span>
-                سهل الاستخدام
+                سهل - بدون أدوات
             </div>
             <div class="feature-box">
                 <span class="icon">🇩🇿</span>
@@ -306,68 +330,77 @@
             <div class="section-title">📋 وصف المنتج</div>
             <div class="desc-item">
                 <div class="desc-icon">🔧</div>
-                <div class="desc-text"><strong>FastTest</strong> - سائل فحص تسرب غطاء المحرك (Cylinder Head Gasket Test Liquid)</div>
+                <div class="desc-text"><strong>FastTest</strong> - جهاز فحص متطور مع سائل خاص لكشف تسرب <strong>جوان كيلاس</strong> (Joint de Culasse / احشية الاسطوانة)</div>
             </div>
             <div class="desc-item">
                 <div class="desc-icon">⚡</div>
-                <div class="desc-text">فحص <strong>سريع وفعال</strong> خلال 30 ثانية فقط</div>
+                <div class="desc-text">فحص <strong>سريع ودقيق</strong> - النتيجة تظهر خلال 30 ثانية فقط</div>
             </div>
             <div class="desc-item">
-                <div class="desc-icon">💧</div>
-                <div class="desc-text">سهل التطبيق - <strong>لا يحتاج أدوات خاصة</strong></div>
+                <div class="desc-icon">📦</div>
+                <div class="desc-text"><strong>جاهز للاستخدام</strong> - العبوة تحتوي على الجهاز + السائل. لا يحتاج أي أدوات إضافية</div>
             </div>
             <div class="desc-item">
                 <div class="desc-icon">🔄</div>
-                <div class="desc-text"><strong>قابل لإعادة الاستخدام</strong> حتى 10 مرات</div>
+                <div class="desc-text"><strong>اقتصادي</strong> - السائل قابل لإعادة الاستخدام حتى 10 مرات</div>
             </div>
             <div class="desc-item">
                 <div class="desc-icon">🛡️</div>
-                <div class="desc-text"><strong>مقاوم للماء</strong> - سيليكون عالي الجودة لتنظيف سهل وفعال</div>
+                <div class="desc-text"><strong>آمن وفعال</strong> - جهاز مقاوم للماء بتركيبة سيليكون عالية الجودة</div>
             </div>
         </div>
 
         <!-- طريقة الاستخدام -->
         <div class="usage-steps">
             <h4>📖 طريقة الاستخدام</h4>
+            <img class="usage-img" src="https://i.ibb.co/997tfr6q/32-F6-E20-A-2-CFA-421-E-992-B-EA52307-A5498.jpg" alt="طريقة استخدام FastTest">
             <div class="step">
                 <div class="step-num">1</div>
                 <div class="step-text">املأ الجهاز بسائل <strong>FastTest</strong></div>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
-                <div class="step-text">أدخل الجهاز في <strong>غطاء الردياتير</strong></div>
+                <div class="step-text">ركّب الجهاز على فتحة <strong>الردياتير</strong> (غطاء Radiator)</div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
-                <div class="step-text">شغل المحرك وانتظر <strong>30 ثانية</strong></div>
+                <div class="step-text">شغّل المحرك واتركه يعمل لمدة <strong>30 ثانية</strong></div>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
-                <div class="step-text">اقرأ النتيجة حسب تغير اللون</div>
+                <div class="step-text">لاحظ تغير لون السائل لمعرفة النتيجة</div>
             </div>
         </div>
 
         <!-- نتائج الفحص -->
         <div class="section-title">🎨 نتائج الفحص</div>
+        <img class="result-img" src="https://i.ibb.co/KxmWsCvd/IMG-1381.png" alt="نتائج فحص FastTest" style="display:block;margin:0 auto;max-width:90%;">
         <div class="result-box">
             <div class="result-item result-ok">
-                <div class="result-dot dot-blue"></div><br>
                 🔵 اللون أزرق<br>
-                <strong>لا يوجد تسرب ✅</strong>
+                <strong>لا يوجد تسرب ✅</strong><br>
+                <small>جوان كيلاس سليم</small>
             </div>
             <div class="result-item result-fail">
-                <div class="result-dot dot-yellow"></div><br>
                 🟡 اللون أصفر<br>
-                <strong>يوجد تسرب ⚠️</strong>
+                <strong>يوجد تسرب ⚠️</strong><br>
+                <small>يحتاج تغيير جوان كيلاس</small>
             </div>
         </div>
 
+        <!-- البطاقة التعريفية -->
+        <div class="brand-card">
+            <img src="https://i.ibb.co/PsSbJttL/IMG-1389.png" alt="FastTest Professional Diagnostic Center">
+        </div>
+
+        <!-- السعر -->
         <div class="price-section">
             <div class="price" id="unitPriceDisplay">8,900 <small>دج</small></div>
             <div class="discount-badge" id="discountBadge" style="display:none;">🔥 خصم! 8500 دج للقطعة عند طلب 2+</div>
             <div class="delivery-info">🚚 التوصيل لجميع الولايات</div>
         </div>
 
+        <!-- نموذج الطلب -->
         <div class="form-section">
             <form id="orderForm">
                 <div class="form-group">
@@ -429,7 +462,10 @@
                 <button type="submit" class="btn-submit" id="submitBtn">🚀 تأكيد الطلب</button>
             </form>
             <div id="message" class="message"></div>
-            <div class="footer-note">📞 للاستفسار: 0778.40.60.48</div>
+            
+            <a href="https://wa.me/213778406048" class="whatsapp-btn" target="_blank">💬 للاستفسار عبر واتساب</a>
+            
+            <div class="footer-note">📞 0778.40.60.48 | HADDAD SERVICE AUTO</div>
         </div>
     </div>
 
