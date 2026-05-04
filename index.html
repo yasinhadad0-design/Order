@@ -3,76 +3,473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تأكيد الطلب</title>
+    <title>FastTest - طلب المنتج</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #f0f2f5;
+            background: #e8f0fe;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: 430px;
+            overflow: hidden;
         }
-        h2 { text-align: center; margin-bottom: 25px; color: #333; }
+        .header {
+            background: #1a3c5e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header .brand {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .header .brand span { color: #00b4d8; }
+        .header .subtitle {
+            font-size: 13px;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background: #f8f9fa;
+            padding: 10px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a3c5e;
+            padding: 15px 15px 5px 15px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+        .feature-box {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #1a3c5e;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .feature-box .icon { font-size: 22px; display: block; margin-bottom: 5px; }
+        
+        /* وصف المنتج */
+        .product-desc {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        .desc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .desc-item:last-child { border-bottom: none; }
+        .desc-icon {
+            width: 40px;
+            height: 40px;
+            background: #e8f4fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .desc-text {
+            font-size: 13px;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .desc-text strong { color: #1a3c5e; }
+        .usage-steps {
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            margin: 10px 15px;
+        }
+        .usage-steps h4 {
+            text-align: center;
+            color: #1a3c5e;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background: #0077b6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .step-text { font-size: 13px; color: #333; line-height: 1.6; }
+        .result-box {
+            display: flex;
+            gap: 10px;
+            padding: 10px 15px;
+        }
+        .result-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .result-ok { background: #d4edda; color: #155724; }
+        .result-fail { background: #fff3cd; color: #856404; }
+        .result-dot {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-bottom: 3px;
+        }
+        .dot-blue { background: #0077b6; }
+        .dot-yellow { background: #ffc107; }
+
+        .price-section {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a3c5e, #0077b6);
+            color: white;
+        }
+        .price {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .price small { font-size: 14px; }
+        .discount-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        .delivery-info {
+            font-size: 13px;
+            color: #90e0ef;
+            margin-top: 5px;
+        }
+        .form-section {
+            padding: 20px;
+        }
         .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: #555; font-weight: bold; }
-        input, textarea {
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        input, textarea, select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 16px;
+            background: #fafafa;
+            transition: all 0.3s;
         }
-        input:focus, textarea:focus { outline: none; border-color: #4CAF50; }
-        button {
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #0077b6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0,119,182,0.1);
+        }
+        .row { display: flex; gap: 10px; }
+        .row .form-group { flex: 1; }
+        .total-box {
+            background: #f0fff0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #c8e6c9;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .total-row.final {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a3c5e;
+            border-top: 1px dashed #ccc;
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+        .total-row.final span { color: #0077b6; }
+        .btn-submit {
             width: 100%;
-            padding: 14px;
-            background: #4CAF50;
+            padding: 15px;
+            background: #00b4d8;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+            transition: all 0.3s;
+            margin-top: 5px;
         }
-        button:hover { background: #45a049; }
-        button:disabled { background: #ccc; }
-        .message { text-align: center; margin-top: 15px; padding: 10px; border-radius: 5px; display: none; }
+        .btn-submit:hover { background: #0096c7; transform: translateY(-1px); }
+        .btn-submit:disabled { background: #ccc; transform: none; }
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            font-weight: bold;
+        }
         .success { background: #d4edda; color: #155724; display: block; }
         .error { background: #f8d7da; color: #721c24; display: block; }
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>تأكيد بيانات التوصيل</h2>
-        <form id="orderForm">
-            <div class="form-group">
-                <label>الاسم الكامل *</label>
-                <input type="text" name="name" required placeholder="أدخل اسمك الكامل">
+        <div class="header">
+            <div class="brand">Fast<span>Test</span></div>
+            <div class="subtitle">جهاز فحص تسرب غطاء المحرك - صنع في الجزائر 🇩🇿</div>
+        </div>
+
+        <!-- غير رابط الصورة إلى رابط مباشر لصورة منتجك -->
+        <img class="product-img" src="https://via.placeholder.com/400x220/1a3c5e/ffffff?text=FastTest+Product" alt="FastTest">
+
+        <div class="features">
+            <div class="feature-box">
+                <span class="icon">⏱️</span>
+                نتيجة في 30 ثانية
             </div>
-            <div class="form-group">
-                <label>رقم الهاتف *</label>
-                <input type="tel" name="phone" required placeholder="05xxxxxxxx">
+            <div class="feature-box">
+                <span class="icon">🔁</span>
+                قابل لإعادة الاستخدام 10 مرات
             </div>
-            <div class="form-group">
-                <label>العنوان الكامل *</label>
-                <textarea name="address" required placeholder="المدينة، الحي، الشارع، رقم المبنى" rows="3"></textarea>
+            <div class="feature-box">
+                <span class="icon">✅</span>
+                سهل الاستخدام
             </div>
-            <button type="submit" id="submitBtn">تأكيد الطلب</button>
-        </form>
-        <div id="message" class="message"></div>
+            <div class="feature-box">
+                <span class="icon">🇩🇿</span>
+                صنع في الجزائر
+            </div>
+        </div>
+
+        <!-- وصف المنتج -->
+        <div class="product-desc">
+            <div class="section-title">📋 وصف المنتج</div>
+            <div class="desc-item">
+                <div class="desc-icon">🔧</div>
+                <div class="desc-text"><strong>FastTest</strong> - سائل فحص تسرب غطاء المحرك (Cylinder Head Gasket Test Liquid)</div>
+            </div>
+            <div class="desc-item">
+                <div class="desc-icon">⚡</div>
+                <div class="desc-text">فحص <strong>سريع وفعال</strong> خلال 30 ثانية فقط</div>
+            </div>
+            <div class="desc-item">
+                <div class="desc-icon">💧</div>
+                <div class="desc-text">سهل التطبيق - <strong>لا يحتاج أدوات خاصة</strong></div>
+            </div>
+            <div class="desc-item">
+                <div class="desc-icon">🔄</div>
+                <div class="desc-text"><strong>قابل لإعادة الاستخدام</strong> حتى 10 مرات</div>
+            </div>
+            <div class="desc-item">
+                <div class="desc-icon">🛡️</div>
+                <div class="desc-text"><strong>مقاوم للماء</strong> - سيليكون عالي الجودة لتنظيف سهل وفعال</div>
+            </div>
+        </div>
+
+        <!-- طريقة الاستخدام -->
+        <div class="usage-steps">
+            <h4>📖 طريقة الاستخدام</h4>
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">املأ الجهاز بسائل <strong>FastTest</strong></div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">أدخل الجهاز في <strong>غطاء الردياتير</strong></div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text">شغل المحرك وانتظر <strong>30 ثانية</strong></div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-text">اقرأ النتيجة حسب تغير اللون</div>
+            </div>
+        </div>
+
+        <!-- نتائج الفحص -->
+        <div class="section-title">🎨 نتائج الفحص</div>
+        <div class="result-box">
+            <div class="result-item result-ok">
+                <div class="result-dot dot-blue"></div><br>
+                🔵 اللون أزرق<br>
+                <strong>لا يوجد تسرب ✅</strong>
+            </div>
+            <div class="result-item result-fail">
+                <div class="result-dot dot-yellow"></div><br>
+                🟡 اللون أصفر<br>
+                <strong>يوجد تسرب ⚠️</strong>
+            </div>
+        </div>
+
+        <div class="price-section">
+            <div class="price" id="unitPriceDisplay">8,900 <small>دج</small></div>
+            <div class="discount-badge" id="discountBadge" style="display:none;">🔥 خصم! 8500 دج للقطعة عند طلب 2+</div>
+            <div class="delivery-info">🚚 التوصيل لجميع الولايات</div>
+        </div>
+
+        <div class="form-section">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>👤 الاسم الكامل *</label>
+                    <input type="text" name="name" required placeholder="أدخل اسمك الكامل">
+                </div>
+
+                <div class="form-group">
+                    <label>📞 رقم الهاتف *</label>
+                    <input type="tel" name="phone" required placeholder="07xxxxxxxx">
+                </div>
+
+                <div class="form-group">
+                    <label>📍 الولاية *</label>
+                    <select name="state" required>
+                        <option value="">اختر الولاية</option>
+<option value="أدرار">أدرار</option><option value="الشلف">الشلف</option><option value="الأغواط">الأغواط</option><option value="أم البواقي">أم البواقي</option><option value="باتنة">باتنة</option><option value="بجاية">بجاية</option><option value="بسكرة">بسكرة</option><option value="بشار">بشار</option><option value="البليدة">البليدة</option><option value="البويرة">البويرة</option><option value="تمنراست">تمنراست</option><option value="تبسة">تبسة</option><option value="تلمسان">تلمسان</option><option value="تيارت">تيارت</option><option value="تيزي وزو">تيزي وزو</option><option value="الجزائر">الجزائر العاصمة</option><option value="الجلفة">الجلفة</option><option value="جيجل">جيجل</option><option value="سطيف">سطيف</option><option value="سعيدة">سعيدة</option><option value="سكيكدة">سكيكدة</option><option value="سيدي بلعباس">سيدي بلعباس</option><option value="عنابة">عنابة</option><option value="قالمة">قالمة</option><option value="قسنطينة">قسنطينة</option><option value="المدية">المدية</option><option value="مستغانم">مستغانم</option><option value="المسيلة">المسيلة</option><option value="معسكر">معسكر</option><option value="ورقلة">ورقلة</option><option value="وهران">وهران</option><option value="البيض">البيض</option><option value="إليزي">إليزي</option><option value="برج بوعريريج">برج بوعريريج</option><option value="بومرداس">بومرداس</option><option value="الطارف">الطارف</option><option value="تندوف">تندوف</option><option value="تسمسيلت">تسمسيلت</option><option value="الوادي">الوادي</option><option value="خنشلة">خنشلة</option><option value="سوق أهراس">سوق أهراس</option><option value="تيبازة">تيبازة</option><option value="ميلة">ميلة</option><option value="عين الدفلى">عين الدفلى</option><option value="النعامة">النعامة</option><option value="عين تموشنت">عين تموشنت</option><option value="غرداية">غرداية</option><option value="غليزان">غليزان</option><option value="تيميمون">تيميمون</option><option value="برج باجي مختار">برج باجي مختار</option><option value="أولاد جلال">أولاد جلال</option><option value="بني عباس">بني عباس</option><option value="عين صالح">عين صالح</option><option value="عين قزام">عين قزام</option><option value="تقرت">تقرت</option><option value="جانت">جانت</option><option value="المغير">المغير</option><option value="المنيعة">المنيعة</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>📍 العنوان الكامل *</label>
+                    <textarea name="address" required placeholder="الحي، الشارع، رقم المبنى" rows="2"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label>📦 الكمية *</label>
+                        <input type="number" name="quantity" id="quantity" value="1" min="1" max="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label>🚚 التوصيل *</label>
+                        <select name="delivery" id="delivery" required>
+                            <option value="650">مكتب (650 دج)</option>
+                            <option value="950">منزل (950 دج)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="total-box">
+                    <div class="total-row">
+                        <span>سعر القطعة:</span>
+                        <span id="unitPrice">8,900 دج</span>
+                    </div>
+                    <div class="total-row">
+                        <span>عدد القطع:</span>
+                        <span id="qtyDisplay">1</span>
+                    </div>
+                    <div class="total-row">
+                        <span>التوصيل:</span>
+                        <span id="deliveryPrice">650 دج</span>
+                    </div>
+                    <div class="total-row final">
+                        <span>💰 الإجمالي:</span>
+                        <span id="totalPrice">9,550 دج</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">🚀 تأكيد الطلب</button>
+            </form>
+            <div id="message" class="message"></div>
+            <div class="footer-note">📞 للاستفسار: 0778.40.60.48</div>
+        </div>
     </div>
+
     <script>
+        var qtyInput = document.getElementById('quantity');
+        var deliverySelect = document.getElementById('delivery');
+        var unitPriceDisplay = document.getElementById('unitPriceDisplay');
+        var discountBadge = document.getElementById('discountBadge');
+        var unitPriceSpan = document.getElementById('unitPrice');
+        var qtyDisplay = document.getElementById('qtyDisplay');
+        var deliveryPriceSpan = document.getElementById('deliveryPrice');
+        var totalPriceSpan = document.getElementById('totalPrice');
+
+        function updateTotal() {
+            var qty = parseInt(qtyInput.value) || 1;
+            var delivery = parseInt(deliverySelect.value) || 650;
+            
+            var unitPrice;
+            if (qty >= 2) {
+                unitPrice = 8500;
+                discountBadge.style.display = 'inline-block';
+                unitPriceDisplay.innerHTML = '8,500 <small>دج</small> <span style="text-decoration:line-through;font-size:14px;color:#ff6b6b;">8,900</span>';
+            } else {
+                unitPrice = 8900;
+                discountBadge.style.display = 'none';
+                unitPriceDisplay.innerHTML = '8,900 <small>دج</small>';
+            }
+            
+            var productTotal = unitPrice * qty;
+            var grandTotal = productTotal + delivery;
+            
+            unitPriceSpan.textContent = unitPrice.toLocaleString() + ' دج';
+            qtyDisplay.textContent = qty;
+            deliveryPriceSpan.textContent = delivery.toLocaleString() + ' دج';
+            totalPriceSpan.textContent = grandTotal.toLocaleString() + ' دج';
+        }
+
+        qtyInput.addEventListener('input', updateTotal);
+        deliverySelect.addEventListener('change', updateTotal);
+
         var form = document.getElementById('orderForm');
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -81,7 +478,18 @@
             btn.disabled = true;
             btn.textContent = 'جاري الإرسال...';
             msg.className = 'message';
+            
             var data = new FormData(form);
+            var qty = parseInt(qtyInput.value) || 1;
+            var delivery = parseInt(deliverySelect.value) || 650;
+            var unitPrice = qty >= 2 ? 8500 : 8900;
+            var grandTotal = (unitPrice * qty) + delivery;
+            
+            data.append('سعر_القطعة', unitPrice + ' دج');
+            data.append('سعر_التوصيل', delivery + ' دج');
+            data.append('الإجمالي', grandTotal + ' دج');
+            data.append('نوع_التوصيل', delivery === 650 ? 'مكتب' : 'منزل');
+            
             try {
                 var response = await fetch('https://formspree.io/f/xzdoevgy', {
                     method: 'POST',
@@ -90,17 +498,20 @@
                 });
                 if (response.ok) {
                     msg.className = 'message success';
-                    msg.textContent = 'تم استلام طلبك بنجاح! سنتواصل معك قريباً';
+                    msg.textContent = '✅ تم استلام طلبك بنجاح! سنتواصل معك قريباً';
                     form.reset();
+                    qtyInput.value = 1;
+                    deliverySelect.value = '650';
+                    updateTotal();
                 } else {
                     throw new Error('فشل الإرسال');
                 }
             } catch (error) {
                 msg.className = 'message error';
-                msg.textContent = 'حدث خطأ. الرجاء المحاولة مرة أخرى';
+                msg.textContent = '❌ حدث خطأ. الرجاء المحاولة مرة أخرى';
             } finally {
                 btn.disabled = false;
-                btn.textContent = 'تأكيد الطلب';
+                btn.textContent = '🚀 تأكيد الطلب';
             }
         });
     </script>
